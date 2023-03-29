@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotes generator website</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind&display=swap" rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bitter:wght@800&display=swap" rel="stylesheet">
+</head>
+<body>
+      <div class="container">
+            <div class="inner">
+                <div class="box">
+                    <p class="number">
+                        <img src="/image/logo.png" alt="tweetme" title="tweetme" id="tweetme" >
+                    </p>
+
+                    <div id="text">
+                        <!-- <i class="start-quote fas fa-quote-left" id="icon"></i> -->
+                        <h1 id="icon">“</h1>
+                        <p id="quotes" class="quotes"></p>
+                        <p id="author" class="author"></p>
+                    </div>
+                    <label  id="button">
+                        <p id="btn">New quotes</p>
+                    </label>
+                </div>
+            </div>
+        </div>
+    <!-- <script src="../src/index.js"></script> -->
+</body>
+ 
+<script>
+
+    const quotes = document.getElementById('quotes');
+    const poet = document.getElementById('author');
+    const btn = document.getElementById('btn');
+    const tweetme = document.getElementById('tweetme');
+    let realdata ="";
+    let quotepost ="";
+    let authorpost ="";
+
+    let tweetpost =()=>{
+        let newpage = `https://twitter.com/intent/tweet?text=${quotepost} -by ${authorpost}`;
+        window.open(newpage);
+    }
+
+    let getrandomnum =()=>{
+        let rannum = Math.floor(Math.random() *1643);
+        quotepost= realdata[rannum].text;
+        authorpost = realdata[rannum].author;
+        quotes.innerHTML =quotepost;
+        if(authorpost==null){
+            authorpost = "Unknown"
+        }
+        poet.innerHTML = "by " + authorpost;
+    }
+    const getquotes = async ()=>{
+        const api ="https://type.fit/api/quotes";
+        try {
+             const data = await fetch(api);
+             realdata = await data.json();
+             getrandomnum();
+            //  console.log(realdata[100].author);
+        } catch (error) {   
+        }
+    };
+    getquotes();
+
+    btn.addEventListener('click',getquotes)
+
+    tweetme.addEventListener('click',tweetpost)
+ </script> 
+</html>
