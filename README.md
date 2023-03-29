@@ -14,3 +14,7 @@ I am assuming that you have Node, npm install in your local device.
 2. Install a package name = Nodemon (npm i nodemon)
 3. Then run the code via using terminal and write #nodemon app.js
 4. run the server on http://127.0.0.1:2000/
+
+## Output
+![image](https://user-images.githubusercontent.com/127651456/228563829-de4291f8-0d33-4b5b-b1d5-715830cee122.png)
+
