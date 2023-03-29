@@ -3,7 +3,7 @@ const app = express();
 const path = require('path');
 const fs = require('fs');
 
-const homefile = fs.readFileSync('./home.html', "utf-8");
+const homefile = fs.readFileSync('./index.html', "utf-8");
 const staticpath =path.join(__dirname,"./css");
 const staticpathimges =path.join(__dirname,"./image");
 // console.log(homefile);
